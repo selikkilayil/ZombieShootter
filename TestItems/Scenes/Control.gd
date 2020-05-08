@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var isSoundOn=true;
 var emmo=80;
 var firing=false
 var isReload=false
@@ -10,8 +11,8 @@ func _ready():
 	$AnimatedSprite.playing = true;
 
 func _physics_process(delta):
-	look_at(get_global_mouse_position())
-	
+	look_at(get_global_mouse_position()+ Vector2(-100,100))
+	$CanvasLayer/RichTextLabel.text= "angle "+str(get_global_mouse_position())
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT) &&  !isReload):
 	   $AnimatedSprite.animation = "Shoot"
 	   createFlare()
@@ -24,14 +25,14 @@ func _physics_process(delta):
    
 
 func playfire():
-	if(!firing):
+	if(!firing && isSoundOn):
 		$fireSound.play(0)
 		firing=true
 	
 func createFlare():
 	if($AnimatedSprite.frame == 1 &&  !isReload):
-		count +=1 
-		$CanvasLayer/RichTextLabel.text= "Ammo "+str(count)
+#		count +=1 
+#		$CanvasLayer/RichTextLabel.text= "Ammo "+str(count)
 		if(emmo == 0):
 			$AnimatedSprite.animation="reload"
 			isReload=true
@@ -46,9 +47,16 @@ func createFlare():
 	else:
 		$flare.visible =false
 
+func soundOnOff():
+	isSoundOn = !isSoundOn
+
 
 func _on_AnimatedSprite_animation_finished():
 	if($AnimatedSprite.animation=="reload"):
 		emmo=80
 		isReload=false
 		$AnimatedSprite.animation="Idle"
+
+
+func _on_TouchScreenButton_pressed():
+	soundOnOff()

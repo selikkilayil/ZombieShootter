@@ -8,7 +8,7 @@ var count
 
 func blood():
 	randomize()
-	for i in range(0,361,30):
+	for i in range(0,40,30):
 		count=rand_range(16,48)
 		draw_alpha=1
 		draw_scale=rand_range(0.3,1.1)
