@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var blood = preload("res://Blood.tscn")
 onready var ray = $ray
 var health =120;
-var speed=25
+var speed=50
 var velocity = Vector2.ZERO
 var pos=Vector2.ZERO
 # Declare member variables here. Examples:
@@ -11,6 +11,7 @@ var pos=Vector2.ZERO
 # var b = "text"
 func _init(_pos=Vector2.ZERO):
 	pos =_pos
+	speed =rand_range(50,100)
 	look_at(pos)
 
 
@@ -26,6 +27,10 @@ func _physics_process(delta):
 	
 	if(health < 0):
 		queue_free()
+	if($ray.is_colliding()):
+		var col =$ray.get_collider()
+		if(col.has_method("_kill")):
+			col._kill()
 	 
 	
 func kill():

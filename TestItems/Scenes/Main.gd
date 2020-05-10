@@ -5,7 +5,7 @@ onready var zombie = preload("res://TestItems/Scenes/zombie.tscn")
 onready var trail = preload("res://trail.tscn")
 
 func _ready():
-	$Player.position = Vector2(get_viewport().size.x/2,get_viewport().size.y - 25)
+	$Player.position=Vector2(get_viewport().size.x/2,get_viewport().size.y-50)
 #	var z1 = zombie.instance()
 #	z1.position = Vector2(0,0)
 #	z1._init($Player.position)
