@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Blood2d.gd" type="Script" id=1]
+
+[node name="Blood2d" type="CPUParticles2D"]
+rotation = -1.5708
+amount = 32
+lifetime = 0.2
+explosiveness = 1.0
+randomness = 0.13
+gravity = Vector2( 0, 0 )
+initial_velocity = 290.0
+initial_velocity_random = 1.0
+scale_amount = 15.0
+scale_amount_random = 0.5
+color = Color( 1, 0, 0, 1 )
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]

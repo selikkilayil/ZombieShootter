@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var blood = preload("res://Blood.tscn")
+onready var blood = preload("res://Blood2d.tscn")
 onready var ray = $ray
 var health =120;
 var speed=50
@@ -27,6 +27,10 @@ func _physics_process(delta):
 	
 	if(health < 0):
 		queue_free()
+		var bld = blood.instance()
+		bld.position = position
+		bld.rotation = global_position.angle_to_point(position)
+		get_parent().add_child(bld)
 	if($ray.is_colliding()):
 		var col =$ray.get_collider()
 		if(col.has_method("_kill")):
@@ -35,8 +39,5 @@ func _physics_process(delta):
 	
 func kill():
 	
-	if health%50 < 5:
-		var bld = blood.instance()
-		bld.position = position
-		get_parent().add_child(bld)
+#	if health%50 < 5:
 	health -=10

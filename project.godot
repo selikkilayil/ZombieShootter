@@ -10,23 +10,20 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="ZombieShooter"
 run/main_scene="res://TestItems/Scenes/Main.tscn"
-boot_splash/image="res://1080_1920.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1080
-window/size/height=1800
+window/size/height=800
 window/size/resizable=false
-window/size/test_width=800
-window/size/test_height=600
 window/energy_saving/keep_screen_on=false
 window/handheld/orientation="portrait"
 window/ios/hide_home_indicator=false
@@ -43,7 +40,6 @@ mb_left={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
